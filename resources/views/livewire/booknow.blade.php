@@ -31,6 +31,18 @@
             </div>
 
             <div>
+                <label class="block text-sm font-medium text-gray-700">Airline</label>
+                <select class="w-full px-3 py-2 border rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">Select an airline</option>
+                    <option value="philippine_airlines">Philippine Airlines</option>
+                    <option value="emirates">Emirates</option>
+                    <option value="qatar_airways">Qatar Airways</option>
+                    <option value="singapore_airlines">Singapore Airlines</option>
+                    <option value="cathay_pacific">Cathay Pacific</option>
+                </select>
+            </div>
+
+            <div>
                 <label class="block text-sm font-medium text-gray-700">Trip Type</label>
                 <select id="trip_type" class="w-full px-3 py-2 border rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
                     <option value="one-way">One-Way</option>
