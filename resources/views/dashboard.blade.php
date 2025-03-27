@@ -23,7 +23,7 @@
                     📅
                 </div>
                 <h3 class="text-lg font-semibold mt-4">My Bookings</h3>
-                <a href="#" class="mt-4 px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 transition">
+                <a href="{{ route('viewbookings') }}" class="mt-4 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition">
                     View Bookings
                 </a>
             </div>
