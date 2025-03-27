@@ -16,9 +16,9 @@ Route::get('/booknow', function () {
 })->middleware(['auth', 'verified'])->name('booknow');
 
 //viewbookings
-Route::get('/viewbookings', function () {
-    return view('livewire.viewbookings');
-})->middleware(['auth', 'verified'])->name('viewbookings');
+Route::get('/viewflights', function () {
+    return view('livewire.viewflights');
+})->middleware(['auth', 'verified'])->name('viewflights');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -22,9 +22,9 @@
                 <div class="w-16 h-16 bg-green-100 text-green-600 flex items-center justify-center rounded-full">
                     📅
                 </div>
-                <h3 class="text-lg font-semibold mt-4">My Bookings</h3>
-                <a href="{{ route('viewbookings') }}" class="mt-4 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition">
-                    View Bookings
+                <h3 class="text-lg font-semibold mt-4">Current Flights</h3>
+                <a href="{{ route('viewflights') }}" class="mt-4 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition">
+                    View Flights
                 </a>
             </div>
 
