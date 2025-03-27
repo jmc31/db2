@@ -28,16 +28,17 @@
                 </a>
             </div>
 
-            <!-- Account Settings -->
+            <!-- My Booked Flights -->
             <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
                 <div class="w-16 h-16 bg-yellow-100 text-yellow-600 flex items-center justify-center rounded-full">
-                    ⚙️
+                    📋
                 </div>
-                <h3 class="text-lg font-semibold mt-4">Account Settings</h3>
-                <a href="{{ route('profile.edit') }}" class="mt-4 px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 transition">
-                    Manage Account
+                <h3 class="text-lg font-semibold mt-4">My Booked Flights</h3>
+                <a href="{{ route('my.bookings') }}" class="mt-4 px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 transition">
+                    View My Flights
                 </a>
             </div>
+
         </div>
     </div>
 @endsection

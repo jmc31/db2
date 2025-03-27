@@ -13,16 +13,24 @@ return new class extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->integer('age');
             $table->string('airline');
+            $table->string('trip_type');
+            $table->string('class')->default('Economy');
             $table->string('origin');
             $table->string('destination');
             $table->dateTime('departure_time');
             $table->dateTime('arrival_time')->nullable();
+            $table->date('departure_date');
+            $table->date('return_date')->nullable();
             $table->decimal('price', 10, 2);
-            $table->string('class')->default('Economy');
             $table->integer('seats_available')->default(100);
             $table->timestamps();
         });
+
     }
 
 

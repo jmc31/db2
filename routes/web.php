@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\BookingController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,10 +18,21 @@ Route::get('/booknow', function () {
     return view('livewire.booknow');
 })->middleware(['auth', 'verified'])->name('booknow');
 
-//viewbookings
+// Route to handle booking submission
+Route::post('/book-flight', [BookingController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('bookflight');
+
+//viewflights
 Route::get('/viewflights', [FlightController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('viewflights');
+//manage flights
+Route::get('/my-bookings', [BookingController::class, 'myBookings'])
+    ->middleware(['auth', 'verified'])
+    ->name('my.bookings');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -10,6 +10,10 @@ class Flight extends Model
     use HasFactory;
 
     protected $fillable = [
-        'airline', 'origin', 'destination', 'departure_time', 'arrival_time', 'price', 'class', 'seats_available'
+        'name', 'email', 'phone', 'age',
+        'departure', 'destination', 'airline',
+        'trip_type', 'class', 'departure_date',
+        'departure_time', 'return_date'
     ];
 }
+
