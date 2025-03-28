@@ -5,9 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\BookingController;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\NewPasswordController;
 
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // ADD THIS LINE
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,12 +49,16 @@ Route::get('/my-bookings', [BookingController::class, 'myBookings'])
         return response()->json(['otp' => $otp]);
     });
 
+    Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+    ->name('password.request');
 
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+    ->name('password.email'); // Generates and sends OTP
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
+    ->name('password.reset');
+
+Route::post('/reset-password', [NewPasswordController::class, 'store'])
+    ->name('password.update'); // Updates the password
 
 require __DIR__.'/auth.php';

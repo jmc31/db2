@@ -3,42 +3,38 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class PasswordResetLinkController extends Controller
 {
-    /**
-     * Display the password reset link request view.
-     */
-    public function create(): View
+    public function create()
     {
-        return view('auth.forgot-password');
+        return view('auth.forgot-password'); // Show security question & OTP form
     }
 
-    /**
-     * Handle an incoming password reset link request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email'],
+            'email' => 'required|email|exists:users,email',
         ]);
 
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+        // Find user
+        $user = User::where('email', $request->email)->first();
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                        ->withErrors(['email' => __($status)]);
+        if (!$user) {
+            return back()->withErrors(['email' => 'User not found.']);
+        }
+
+        // Generate OTP
+        $otp = random_int(100000, 999999);
+
+        // Store OTP in session for verification
+        Session::put('otp', $otp);
+        Session::put('otp_email', $user->email);
+
+        return response()->json(['otp' => $otp]);
     }
 }
