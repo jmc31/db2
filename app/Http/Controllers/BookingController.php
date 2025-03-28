@@ -21,7 +21,7 @@ class BookingController extends Controller
             'trip_type' => 'required|string',
             'class' => 'required|string',
             'departure_date' => 'required|date',
-            'departure_time' => 'required|date_format:Y-m-d H:i:s', // Ensure correct format
+            'departure_time' => 'required|date_format:Y-m-d H:i:s',
             'return_date' => 'nullable|date',
         ]);
 

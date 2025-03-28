@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\BookingController;
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 
 Route::get('/', function () {
@@ -31,6 +34,13 @@ Route::get('/viewflights', [FlightController::class, 'index'])
 Route::get('/my-bookings', [BookingController::class, 'myBookings'])
     ->middleware(['auth', 'verified'])
     ->name('my.bookings');
+
+    Route::post('/generate-otp', function (Request $request) {
+        $otp = rand(100000, 999999); // Generate 6-digit OTP
+        Session::put('otp', $otp);
+
+        return response()->json(['otp' => $otp]);
+    });
 
 
 
